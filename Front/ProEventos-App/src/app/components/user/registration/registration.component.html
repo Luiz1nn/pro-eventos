@@ -9,7 +9,7 @@
 
   <div class="col-md-6">
 
-    <form class="p-1" [formGroup]="formRegistration">
+    <form (ngSubmit)="register()" class="p-1" [formGroup]="formRegistration">
       <div class="pb-2 d-block d-md-none">
         <h3 class="border-bottom">Cadastro de Usuário</h3>
       </div>
@@ -57,24 +57,24 @@
         <div class="form-group col-sm-6">
           <label for="">Senha:</label>
           <input class="quadrado form-control" type="password"
-            [ngClass]="{ 'is-invalid': f.senha.errors && f.senha.touched }" formControlName="senha"
-            placeholder="Digite uma Senha" />
-          <div *ngIf="f.senha.errors?.required && f.senha.touched" class="invalid-feedback">
+            [ngClass]="{ 'is-invalid': f.password.errors && f.password.touched }" formControlName="password"
+            placeholder="Digite uma senha" />
+          <div *ngIf="f.password.errors?.required && f.password.touched" class="invalid-feedback">
             Senha é obrigatório.
           </div>
-          <div *ngIf="f.senha.errors?.minlength && f.senha.touched" class="invalid-feedback">
+          <div *ngIf="f.password.errors?.minlength && f.password.touched" class="invalid-feedback">
             Deve conter no mínimo 6 caracteres.
           </div>
         </div>
         <div class="form-group col-sm-6">
           <label for="">Confirmar Senha:</label>
           <input class="quadrado form-control" type="password"
-            [ngClass]="{ 'is-invalid': f.confirmeSenha.errors && f.confirmeSenha.touched }"
-            formControlName="confirmeSenha" placeholder="Confirme a Senha" />
-            <div *ngIf="f.confirmeSenha.errors?.required" class="invalid-feedback">
+            [ngClass]="{ 'is-invalid': f.confirmePassword.errors && f.confirmePassword.touched }"
+            formControlName="confirmePassword" placeholder="Confirme a Senha" />
+            <div *ngIf="f.confirmePassword.errors?.required" class="invalid-feedback">
               Confirmar Senha é obrigatório.
             </div>
-            <div *ngIf="f.confirmeSenha.errors?.mustMatch" class="invalid-feedback">
+            <div *ngIf="f.confirmePassword.errors?.mustMatch" class="invalid-feedback">
               Repetir a senha é obrigatório.
             </div>
         </div>
