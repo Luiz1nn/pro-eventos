@@ -5,10 +5,8 @@
         <div class="input-group-prepend">
           <div class="input-group-text">Filtro: </div>
         </div>
-        <input type="text"
-          class="quadrado form-control"
-          placeholder="Buscar por tema e local"
-          [(ngModel)]="filtroLista">
+        <input type="text" class="quadrado form-control" placeholder="Filtrar por tema e local"
+          (input)="filtrarEventos($event.target)">
       </div>
     </div>
     <div>
@@ -23,7 +21,7 @@
       <tr>
         <th class="d-none d-md-table-cell">
           <button type="button" class="quadrado btn btn-outline-light btn-sm" (click)="alterarImagem()">
-          <i class="{{ !exibirImagem ? 'fa fa-eye' : 'fa fa-eye-slash' }}"></i>
+            <i class="{{ !exibirImagem ? 'fa fa-eye' : 'fa fa-eye-slash' }}"></i>
             {{ !exibirImagem ? 'Exibir' : 'Ocultar' }}
           </button>
         </th>
@@ -37,13 +35,10 @@
       </tr>
     </thead>
     <tbody *ngIf="eventos && eventos.length">
-      <tr *ngFor="let evento of eventosFiltrados" style="cursor: pointer;" (click)="detalheEvento(evento.id)">
+      <tr *ngFor="let evento of eventos" style="cursor: pointer;" (click)="detalheEvento(evento.id)">
         <td class="d-none d-md-table-cell">
-          <img [collapse]="!exibirImagem"
-            [isAnimated]="true"
-            src="/assets/{{ evento.imagemURL }}"
-            [style.width.px]="larguraImagem"
-            [style.margin.px]="margemImagem">
+          <img [collapse]="!exibirImagem" [isAnimated]="true" src="/assets/{{ evento.imagemURL }}"
+            [style.width.px]="larguraImagem" [style.margin.px]="margemImagem">
         </td>
         <td>{{ evento.id }}</td>
         <td>{{ evento.tema }}</td>
@@ -52,7 +47,8 @@
         <td class="d-none d-md-table-cell">{{ evento.qtdPessoas }}</td>
         <td class="d-none d-md-table-cell">{{ evento.lotes[0]?.nome }}</td>
         <td>
-          <button type="button" class="quadrado btn btn-danger btn-lg" tooltip="Excluir" (click)="openModal($event, template, evento.id)">
+          <button type="button" class="quadrado btn btn-danger btn-lg" tooltip="Excluir"
+            (click)="openModal($event, template, evento.id)">
             <i class="fa fa-trash"></i>
           </button>
         </td>
@@ -65,6 +61,13 @@
       </tr>
     </tfoot>
   </table>
+
+  <div class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+      [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" pageBtnClass="btn" previousText="&lsaquo;" nextText="&rsaquo;"
+      firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+  </div>
 </div>
 
 <ng-template #template>
