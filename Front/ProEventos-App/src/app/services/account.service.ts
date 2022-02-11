@@ -42,7 +42,7 @@ export class AccountService {
       map((user: UserUpdate) => {
         this.setCurrentUser(user);
       })
-    )
+    );
   }
 
   public register(model: any): Observable<void> {
