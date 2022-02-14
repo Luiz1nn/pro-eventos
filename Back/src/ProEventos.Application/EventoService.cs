@@ -9,7 +9,7 @@ using ProEventos.Persistence.Models;
 
 namespace ProEventos.Application
 {
-    public class EventoService : IEventoService
+    public class EventoService: IEventoService
     {
         private readonly IGeralPersist _geralPersit;
         private readonly IEventoPersist _eventoPersit;

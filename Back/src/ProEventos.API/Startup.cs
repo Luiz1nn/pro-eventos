@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Collections.Generic;
+using ProEventos.API.Helpers;
 using ProEventos.Application;
 using ProEventos.Domain.Identity;
 using ProEventos.Persistence;
@@ -81,11 +82,16 @@ namespace ProEventos.API
             services.AddScoped<ILoteService, LoteService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IPalestranteService, PalestranteService>();
+            services.AddScoped<IRedeSocialService, RedeSocialService>();
+            services.AddScoped<IUtil, Util>();
 
             services.AddScoped<IGeralPersist, GeralPersist>();
             services.AddScoped<IEventoPersist, EventosPersist>();
             services.AddScoped<ILotePersist, LotePersist>();
             services.AddScoped<IUserPersist, UserPersist>();
+            services.AddScoped<IPalestrantePersist, PalestrantePersist>();
+            services.AddScoped<IRedeSocialPersist, RedeSocialPersist>();
 
             services.AddCors();
             services.AddSwaggerGen(opt =>
