@@ -28,6 +28,7 @@
 	<ItemGroup>
 		<Folder Include="Data\" />
 		<Folder Include="Resources\Images\" />
+		<Folder Include="Resources\Perfil\" />
 	</ItemGroup>
 
 </Project>

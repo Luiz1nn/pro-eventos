@@ -16,7 +16,7 @@ export class AccountService {
   private currentUserSource = new ReplaySubject<User>(1);
   public currentUse$ = this.currentUserSource.asObservable();
 
-  baseUrl = environment.apiURL + 'api/account/'
+  baseUrl = environment.apiURL + 'api/account/';
 
   constructor(private http: HttpClient) { }
 
@@ -66,6 +66,17 @@ export class AccountService {
   public setCurrentUser(user: User): void {
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
+  }
+
+  postUpload(file: File): Observable<UserUpdate> {
+    const fileToUpload = file[0] as File;
+    const formData = new FormData();
+
+    formData.append('file', fileToUpload);
+
+    return this.http
+      .post<UserUpdate>(`${this.baseUrl}upload-image`, formData)
+      .pipe(take(1));
   }
 
 }
